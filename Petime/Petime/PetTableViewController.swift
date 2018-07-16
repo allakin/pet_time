@@ -16,8 +16,8 @@ class PetTableViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationItem.title = "Pets name"
-		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
-		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(handleReset))
+//		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(handleAddPet))
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIndetifier)
 		tableView.backgroundColor = .darkBlueColor
 	}
@@ -36,6 +36,12 @@ class PetTableViewController: UITableViewController {
 	
 	@objc func handleReset() {
 		
+	}
+	
+	@objc func handleAddPet() {
+		let createPetController = CreatePetController()
+		let navController = CustomNavigationController(rootViewController: createPetController)
+		present(navController, animated: true, completion: nil)
 	}
 	
 }

@@ -13,6 +13,7 @@
 		E9F5530320FB9C8700E7D68A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9F5530120FB9C8700E7D68A /* LaunchScreen.storyboard */; };
 		E9F5531020FD1FE500E7D68A /* PetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5530F20FD1FE500E7D68A /* PetTableViewController.swift */; };
 		E9F5531220FD23F300E7D68A /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5531120FD23F300E7D68A /* Color+Theme.swift */; };
+		E9F5531420FD2FA100E7D68A /* CreatePetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5531320FD2FA100E7D68A /* CreatePetController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E9F5530420FB9C8700E7D68A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9F5530F20FD1FE500E7D68A /* PetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetTableViewController.swift; sourceTree = "<group>"; };
 		E9F5531120FD23F300E7D68A /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
+		E9F5531320FD2FA100E7D68A /* CreatePetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePetController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				E9F5530120FB9C8700E7D68A /* LaunchScreen.storyboard */,
 				E9F5530420FB9C8700E7D68A /* Info.plist */,
 				E9F5531120FD23F300E7D68A /* Color+Theme.swift */,
+				E9F5531320FD2FA100E7D68A /* CreatePetController.swift */,
 			);
 			path = Petime;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9F5531220FD23F300E7D68A /* Color+Theme.swift in Sources */,
+				E9F5531420FD2FA100E7D68A /* CreatePetController.swift in Sources */,
 				E9F552F920FB9C8600E7D68A /* AppDelegate.swift in Sources */,
 				E9F5531020FD1FE500E7D68A /* PetTableViewController.swift in Sources */,
 			);
