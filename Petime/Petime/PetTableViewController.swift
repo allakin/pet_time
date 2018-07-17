@@ -8,10 +8,16 @@
 
 import UIKit
 
-class PetTableViewController: UITableViewController {
+class PetTableViewController: UITableViewController, CreatePetControllerDelegate {
+	
+	func createPetName(name: String) {
+		petName.append(name)
+		let indexPath = IndexPath(row: petName.count-1, section: 0)
+		tableView.insertRows(at: [indexPath], with: .automatic)
+	}
 	
 	let cellIndetifier = "cell"
-	let array = ["1", "1", "1", "1", "1", "1"]
+	var petName = [String]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -23,12 +29,12 @@ class PetTableViewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return array.count
+		return petName.count
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellIndetifier, for: indexPath)
-		cell.textLabel?.text = array[indexPath.row]
+		cell.textLabel?.text = petName[indexPath.row]
 		cell.textLabel?.textColor = .white
 		cell.backgroundColor = .darkBlueColor
 		return cell
@@ -40,6 +46,7 @@ class PetTableViewController: UITableViewController {
 	
 	@objc func handleAddPet() {
 		let createPetController = CreatePetController()
+		createPetController.delegate = self
 		let navController = CustomNavigationController(rootViewController: createPetController)
 		present(navController, animated: true, completion: nil)
 	}
