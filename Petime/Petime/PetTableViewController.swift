@@ -8,7 +8,13 @@
 
 import UIKit
 
-class PetTableViewController: UITableViewController, CreatePetControllerDelegate {
+class PetTableViewController: UITableViewController, CreatePetControllerDelegate, EditPetNameViewControllerDelegate {
+	func editPetName(name: String) {
+		let row = petName.index(of: name)
+		let indexPath = IndexPath(row: row!, section: 0)
+		tableView.reloadRows(at: [indexPath], with: .middle)
+	}
+	
 	
 	func createPetName(name: String) {
 		petName.append(name)
@@ -40,15 +46,18 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 		return cell
 	}
 	
-	@objc func handleReset() {
-		
-	}
-	
 	@objc func handleAddPet() {
 		let createPetController = CreatePetController()
 		createPetController.delegate = self
 		let navController = CustomNavigationController(rootViewController: createPetController)
 		present(navController, animated: true, completion: nil)
+	}
+
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let editPetName = EditPetNameViewController()
+		editPetName.petName = petName[indexPath.row]
+		let navBar = CustomNavigationController(rootViewController: editPetName)
+		present(navBar, animated: true, completion: nil)
 	}
 	
 }
