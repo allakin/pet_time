@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreData
 
 protocol CreatePetControllerDelegate {
-	func createPetName(name: String)
+	func createPetName(name: PetName)
 }
 
 class CreatePetController: UIViewController {
@@ -43,9 +44,18 @@ class CreatePetController: UIViewController {
 	}
 	
 	@objc func hangleSave() {
-		dismiss(animated: true) {
-			guard let name = self.namePetTextField.text else {return}
-			self.delegate?.createPetName(name: name)
+		guard let name = self.namePetTextField.text else {return}
+		let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+		let entity = NSEntityDescription.insertNewObject(forEntityName: "PetName", into: viewContext)
+		entity.setValue(name, forKey: "name")
+		entity.setValue(Date(), forKey: "date")
+		do {
+			try viewContext.save()
+			dismiss(animated: true) {
+				self.delegate?.createPetName(name: entity as! PetName)
+			}
+		} catch let error {
+			print(error)
 		}
 	}
 	
@@ -57,7 +67,7 @@ class CreatePetController: UIViewController {
 		backgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
 		backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
 		backgroundView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-		backgroundView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+		backgroundView.heightAnchor.constraint(equalToConstant: 50).isActive = true
 		view.addSubview(namePetLabel)
 		namePetLabel.topAnchor.constraint(equalTo: backgroundView.topAnchor).isActive = true
 		namePetLabel.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: 16).isActive = true
