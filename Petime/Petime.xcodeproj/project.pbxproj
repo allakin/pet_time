@@ -10,6 +10,7 @@
 		E90E920620FFB5AF00AB75FA /* EditPetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90E920520FFB5AF00AB75FA /* EditPetNameViewController.swift */; };
 		E90E920920FFC0A600AB75FA /* PetimeDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E90E920720FFC0A600AB75FA /* PetimeDataBase.xcdatamodeld */; };
 		E90E920B20FFC0E800AB75FA /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90E920A20FFC0E800AB75FA /* CoreDataManager.swift */; };
+		E9CA27912106513B002F6E55 /* PetWalkOnTheStreet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA27902106513B002F6E55 /* PetWalkOnTheStreet.swift */; };
 		E9F552F920FB9C8600E7D68A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F552F820FB9C8600E7D68A /* AppDelegate.swift */; };
 		E9F552FE20FB9C8600E7D68A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9F552FC20FB9C8600E7D68A /* Main.storyboard */; };
 		E9F5530020FB9C8700E7D68A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9F552FF20FB9C8700E7D68A /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		E90E920520FFB5AF00AB75FA /* EditPetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPetNameViewController.swift; sourceTree = "<group>"; };
 		E90E920820FFC0A600AB75FA /* PetimeDataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PetimeDataBase.xcdatamodel; sourceTree = "<group>"; };
 		E90E920A20FFC0E800AB75FA /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		E9CA27902106513B002F6E55 /* PetWalkOnTheStreet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetWalkOnTheStreet.swift; sourceTree = "<group>"; };
 		E9F552F520FB9C8600E7D68A /* Petime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F552F820FB9C8600E7D68A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9F552FD20FB9C8600E7D68A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				E90E920520FFB5AF00AB75FA /* EditPetNameViewController.swift */,
 				E90E920720FFC0A600AB75FA /* PetimeDataBase.xcdatamodeld */,
 				E90E920A20FFC0E800AB75FA /* CoreDataManager.swift */,
+				E9CA27902106513B002F6E55 /* PetWalkOnTheStreet.swift */,
 			);
 			path = Petime;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9CA27912106513B002F6E55 /* PetWalkOnTheStreet.swift in Sources */,
 				E9F5531220FD23F300E7D68A /* Color+Theme.swift in Sources */,
 				E9F5531420FD2FA100E7D68A /* CreatePetController.swift in Sources */,
 				E90E920920FFC0A600AB75FA /* PetimeDataBase.xcdatamodeld in Sources */,

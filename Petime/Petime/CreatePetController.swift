@@ -44,18 +44,14 @@ class CreatePetController: UIViewController {
 	}
 	
 	@objc func hangleSave() {
-		guard let name = self.namePetTextField.text else {return}
-		let viewContext = CoreDataManager.shared.persistentContainer.viewContext
-		let entity = NSEntityDescription.insertNewObject(forEntityName: "PetName", into: viewContext)
-		entity.setValue(name, forKey: "name")
-		entity.setValue(Date(), forKey: "date")
-		do {
-			try viewContext.save()
-			dismiss(animated: true) {
-				self.delegate?.createPetName(name: entity as! PetName)
-			}
-		} catch let error {
+		guard let petName = self.namePetTextField.text else {return}
+		let tuple = CoreDataManager.shared.saveCoreDate(name: petName)
+		if let error = tuple.1 {
 			print(error)
+		} else {
+			dismiss(animated: true) {
+				self.delegate?.createPetName(name: tuple.0!)
+			}
 		}
 	}
 	

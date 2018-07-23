@@ -68,13 +68,15 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 		let navController = CustomNavigationController(rootViewController: createPetController)
 		present(navController, animated: true, completion: nil)
 	}
-
+	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let editPetName = EditPetNameViewController()
-		editPetName.delegate = self
-		editPetName.petName = petName[indexPath.row]
-		let navBar = CustomNavigationController(rootViewController: editPetName)
-		present(navBar, animated: true, completion: nil)
+		let petWalk = PetWalkOnTheStreet()
+		navigationController?.pushViewController(petWalk, animated: true)
+//		let editPetName = EditPetNameViewController()
+//		editPetName.delegate = self
+//		editPetName.petName = petName[indexPath.row]
+//		let navBar = CustomNavigationController(rootViewController: editPetName)
+//		present(navBar, animated: true, completion: nil)
 	}
 	
 }
