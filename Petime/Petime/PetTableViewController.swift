@@ -96,7 +96,7 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 			do {
 				try context.save()
 			} catch let saveErr {
-				print("Failed to delete company:", saveErr)
+				print("Failed to delete name:", saveErr)
 			}
 		}
 		deleteAction.backgroundColor = .darkPinkColor
