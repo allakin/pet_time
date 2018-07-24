@@ -29,7 +29,7 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationItem.title = "Pets list"
-//		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
+		//		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
 		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(handleAddPet))
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIndetifier)
 		tableView.backgroundColor = .darkBlueColor
@@ -51,11 +51,11 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellIndetifier, for: indexPath)
-		let name = petName[indexPath.row]
-		if let date = name.date {
+		let nameCell = petName[indexPath.row]
+		if let date = nameCell.date {
 			let dateFormatter = DateFormatter()
 			dateFormatter.dateFormat = "MM/dd/yyyy"
-			cell.textLabel?.text = "\(name.name! ?? "") - \(dateFormatter.string(from: date))"
+			cell.textLabel?.text = nameCell.name! + "-" + dateFormatter.string(from: date)
 			let label = UILabel.init(frame: CGRect(x:0,y:0,width:30,height:44))
 			label.text = "99"
 			label.textColor = .white
@@ -78,11 +78,42 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 		let pet = petName[indexPath.row]
 		petWalk.petName = pet.name!
 		navigationController?.pushViewController(petWalk, animated: true)
-//		let editPetName = EditPetNameViewController()
-//		editPetName.delegate = self
-//		editPetName.petName = petName[indexPath.row]
-//		let navBar = CustomNavigationController(rootViewController: editPetName)
-//		present(navBar, animated: true, completion: nil)
 	}
+	
+	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+		let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+			let petlist = self.petName[indexPath.row]
+			//			print("Attempting to delete company:", company.name ?? "")
+			
+			self.petName.remove(at: indexPath.row)
+			self.tableView.deleteRows(at: [indexPath], with: .automatic)
+			
+			// delete the company from Core Data
+			let context = CoreDataManager.shared.persistentContainer.viewContext
+			
+			context.delete(petlist)
+			
+			do {
+				try context.save()
+			} catch let saveErr {
+				print("Failed to delete company:", saveErr)
+			}
+		}
+		deleteAction.backgroundColor = .darkPinkColor
+		
+		let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: editHandlerFunction)
+		editAction.backgroundColor = .darkPurpleColor
+		
+		return [deleteAction, editAction]
+	}
+	
+	private func editHandlerFunction(action: UITableViewRowAction, indexPath: IndexPath) {
+		let editPetName = EditPetNameViewController()
+		editPetName.delegate = self
+		editPetName.petName = petName[indexPath.row]
+		let navBar = CustomNavigationController(rootViewController: editPetName)
+		present(navBar, animated: true, completion: nil)
+	}
+	
 	
 }

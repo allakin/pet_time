@@ -45,7 +45,7 @@ class CreatePetController: UIViewController {
 	
 	@objc func hangleSave() {
 		guard let petName = self.namePetTextField.text else {return}
-		let tuple = CoreDataManager.shared.savePetNameInCoreData(name: petName)
+		let tuple = CoreDataManager.shared.savePetNameInCoreData(name: petName, date: Date())
 		if let error = tuple.1 {
 			print(error)
 		} else {

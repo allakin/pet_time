@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol EditPetNameViewControllerDelegate {
 	func editPetName(name: PetName)

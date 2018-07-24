@@ -21,11 +21,11 @@ class CoreDataManager {
 		return container
 	}()
 	
-	func savePetNameInCoreData(name: String) -> (PetName?, Error?) {
+	func savePetNameInCoreData(name: String, date: Date) -> (PetName?, Error?) {
 		let viewContext = persistentContainer.viewContext
 		let entity = NSEntityDescription.insertNewObject(forEntityName: "PetName", into: viewContext)
 		entity.setValue(name, forKey: "name")
-		entity.setValue(Date(), forKey: "date")
+		entity.setValue(date, forKey: "date")
 		do {
 			try viewContext.save()
 			return (entity as! PetName, nil)
