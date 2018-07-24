@@ -21,14 +21,27 @@ class CoreDataManager {
 		return container
 	}()
 	
-	func saveCoreDate(name: String) -> (PetName?, Error?) {
-		let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+	func savePetNameInCoreData(name: String) -> (PetName?, Error?) {
+		let viewContext = persistentContainer.viewContext
 		let entity = NSEntityDescription.insertNewObject(forEntityName: "PetName", into: viewContext)
 		entity.setValue(name, forKey: "name")
 		entity.setValue(Date(), forKey: "date")
 		do {
 			try viewContext.save()
 			return (entity as! PetName, nil)
+		} catch let error {
+			print(error)
+			return (nil, nil)
+		}
+	}
+	
+	func savePetWalkInCoreData(date: Date) -> (PetWalk?, Error?) {
+		let viewContext = persistentContainer.viewContext
+		let entity = NSEntityDescription.insertNewObject(forEntityName: "PetWalk", into: viewContext)
+		entity.setValue(date, forKey: "date")
+		do {
+			try viewContext.save()
+			return (entity as! PetWalk, nil)
 		} catch let error {
 			print(error)
 			return (nil, nil)

@@ -28,7 +28,7 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		navigationItem.title = "Pets name"
+		navigationItem.title = "Pets list"
 //		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
 		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(handleAddPet))
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIndetifier)
@@ -56,6 +56,10 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 			let dateFormatter = DateFormatter()
 			dateFormatter.dateFormat = "MM/dd/yyyy"
 			cell.textLabel?.text = "\(name.name! ?? "") - \(dateFormatter.string(from: date))"
+			let label = UILabel.init(frame: CGRect(x:0,y:0,width:30,height:44))
+			label.text = "99"
+			label.textColor = .white
+			cell.accessoryView = label
 		}
 		cell.textLabel?.textColor = .white
 		cell.backgroundColor = .darkBlueColor
@@ -71,6 +75,8 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let petWalk = PetWalkOnTheStreet()
+		let pet = petName[indexPath.row]
+		petWalk.petName = pet.name!
 		navigationController?.pushViewController(petWalk, animated: true)
 //		let editPetName = EditPetNameViewController()
 //		editPetName.delegate = self
