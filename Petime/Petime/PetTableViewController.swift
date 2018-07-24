@@ -55,7 +55,7 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 		if let date = nameCell.date {
 			let dateFormatter = DateFormatter()
 			dateFormatter.dateFormat = "MM/dd/yyyy"
-			cell.textLabel?.text = nameCell.name! + "-" + dateFormatter.string(from: date)
+			cell.textLabel?.text = nameCell.name! + " - " + dateFormatter.string(from: date)
 			let label = UILabel.init(frame: CGRect(x:0,y:0,width:30,height:44))
 			label.text = "99"
 			label.textColor = .white
@@ -83,7 +83,6 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 		let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
 			let petlist = self.petName[indexPath.row]
-			//			print("Attempting to delete company:", company.name ?? "")
 			
 			self.petName.remove(at: indexPath.row)
 			self.tableView.deleteRows(at: [indexPath], with: .automatic)
