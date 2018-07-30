@@ -29,7 +29,6 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationItem.title = "Pets list"
-		//		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
 		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(handleAddPet))
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIndetifier)
 		tableView.backgroundColor = .darkBlueColor
@@ -41,8 +40,6 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 		} catch let error {
 			print(error)
 		}
-		
-		
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -74,9 +71,9 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 	}
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let petWalk = PetWalkOnTheStreet()
-		let pet = petName[indexPath.row]
-		petWalk.petName = pet.name!
+		let petWalk = PetWalkOnTheStreetController()
+//		let title = petName[indexPath.row].name
+		petWalk.petName = petName[indexPath.row]
 		navigationController?.pushViewController(petWalk, animated: true)
 	}
 	

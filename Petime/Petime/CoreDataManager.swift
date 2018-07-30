@@ -23,25 +23,26 @@ class CoreDataManager {
 	
 	func savePetNameInCoreData(name: String, date: Date) -> (PetName?, Error?) {
 		let viewContext = persistentContainer.viewContext
-		let entity = NSEntityDescription.insertNewObject(forEntityName: "PetName", into: viewContext)
+		let entity = NSEntityDescription.insertNewObject(forEntityName: "PetName", into: viewContext) as! PetName
 		entity.setValue(name, forKey: "name")
 		entity.setValue(date, forKey: "date")
 		do {
 			try viewContext.save()
-			return (entity as! PetName, nil)
+			return (entity, nil)
 		} catch let error {
 			print(error)
 			return (nil, nil)
 		}
 	}
 	
-	func savePetWalkInCoreData(date: Date) -> (PetWalk?, Error?) {
+	func savePetWalkInCoreData(date: Date, pet: PetName) -> (PetWalk?, Error?) {
 		let viewContext = persistentContainer.viewContext
-		let entity = NSEntityDescription.insertNewObject(forEntityName: "PetWalk", into: viewContext)
+		let entity = NSEntityDescription.insertNewObject(forEntityName: "PetWalk", into: viewContext) as! PetWalk
+		entity.petName = pet
 		entity.setValue(date, forKey: "date")
 		do {
 			try viewContext.save()
-			return (entity as! PetWalk, nil)
+			return (entity, nil)
 		} catch let error {
 			print(error)
 			return (nil, nil)
