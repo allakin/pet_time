@@ -55,7 +55,7 @@ class PetWalkOnTheStreetController: UITableViewController {
 		let nameCell = petWalk[indexPath.row]
 		if let date = nameCell.date {
 			let dateFormatter = DateFormatter()
-			dateFormatter.dateFormat = "MM/dd/yyyy"
+			dateFormatter.dateFormat = "MM/dd/yyyy hh:mm"
 			cell.textLabel?.text = dateFormatter.string(from: date)
 		}
 		return cell
