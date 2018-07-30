@@ -40,6 +40,7 @@ class CreatePetController: UIViewController {
 		setupUI()
 		navigationItem.title = "Create Pet"
 		view.backgroundColor = .darkBlueColor
+		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(hangleCancel))
 		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(hangleSave))
 	}
 	
@@ -53,6 +54,10 @@ class CreatePetController: UIViewController {
 				self.delegate?.createPetName(name: tuple.0!)
 			}
 		}
+	}
+	
+	@objc func hangleCancel() {
+		dismiss(animated: true, completion: nil)
 	}
 	
 	private func setupUI() {
