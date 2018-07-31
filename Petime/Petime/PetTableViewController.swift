@@ -73,7 +73,6 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let petWalk = PetWalkOnTheStreetController()
-//		let title = petName[indexPath.row].name
 		petWalk.petName = petName[indexPath.row]
 		navigationController?.pushViewController(petWalk, animated: true)
 	}
