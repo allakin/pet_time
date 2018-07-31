@@ -57,6 +57,7 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 			label.text = "99"
 			label.textColor = .white
 			cell.accessoryView = label
+			cell.selectionStyle = UITableViewCellSelectionStyle.none
 		}
 		cell.textLabel?.textColor = .white
 		cell.backgroundColor = .darkBlueColor
