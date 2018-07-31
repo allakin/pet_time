@@ -16,15 +16,15 @@ class PetWalkOnTheStreetController: UITableViewController {
 	var petName: PetName?
 	
 	func fetch() {
-				guard let test = petName?.petWalk?.allObjects as? [PetWalk] else { return }
-				petWalk = test
-//		let viewContext = CoreDataManager.shared.persistentContainer.viewContext
-//		let fetchRequest = NSFetchRequest<PetWalk>(entityName: "PetWalk")
-//		do {
-//			petWalk = try viewContext.fetch(fetchRequest)
-//		} catch let error {
-//			print(error)
-//		}
+		guard let allPetsTime = petName?.petWalk?.allObjects as? [PetWalk] else { return }
+		petWalk = allPetsTime
+		//		let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+		//		let fetchRequest = NSFetchRequest<PetWalk>(entityName: "PetWalk")
+		//		do {
+		//			petWalk = try viewContext.fetch(fetchRequest)
+		//		} catch let error {
+		//			print(error)
+		//		}
 	}
 	
 	override func viewDidLoad() {
@@ -52,6 +52,7 @@ class PetWalkOnTheStreetController: UITableViewController {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 		cell.textLabel?.textColor = .white
 		cell.backgroundColor = .darkBlueColor
+		cell.selectionStyle = UITableViewCellSelectionStyle.none
 		let nameCell = petWalk[indexPath.row]
 		if let date = nameCell.date {
 			let dateFormatter = DateFormatter()
