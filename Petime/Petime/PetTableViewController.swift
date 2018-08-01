@@ -32,6 +32,7 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(handleAddPet))
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIndetifier)
 		tableView.backgroundColor = .darkBlueColor
+		tableView.tableFooterView = UIView(frame: CGRect.zero)
 		
 		let viewContext = CoreDataManager.shared.persistentContainer.viewContext
 		let fetchRequest = NSFetchRequest<PetName>(entityName: "PetName")
@@ -53,12 +54,15 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 			let dateFormatter = DateFormatter()
 			dateFormatter.dateFormat = "MM/dd/yyyy"
 			cell.textLabel?.text = nameCell.name! + " - " + dateFormatter.string(from: date)
-			let label = UILabel.init(frame: CGRect(x:0,y:0,width:30,height:44))
-			label.text = "99"
-			label.textColor = .white
-			cell.accessoryView = label
-			cell.selectionStyle = UITableViewCellSelectionStyle.none
+//			let label = UILabel.init(frame: CGRect(x:0,y:0,width:30,height:44))
+//			label.text = "99"
+//			label.textColor = .white
+//			cell.accessoryView = label
 		}
+//		cell.contentView.backgroundColor = .darkPinkColor
+		let backgroundColorView = UIView()
+		backgroundColorView.backgroundColor = .darkPinkColor
+		UITableViewCell.appearance().selectedBackgroundView = backgroundColorView
 		cell.textLabel?.textColor = .white
 		cell.backgroundColor = .darkBlueColor
 		return cell
@@ -73,7 +77,6 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let petWalk = PetWalkOnTheStreetController()
-//		let title = petName[indexPath.row].name
 		petWalk.petName = petName[indexPath.row]
 		navigationController?.pushViewController(petWalk, animated: true)
 	}

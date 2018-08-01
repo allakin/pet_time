@@ -9,22 +9,19 @@
 import UIKit
 import CoreData
 
-class PetWalkOnTheStreetController: UITableViewController {
+class PetWalkOnTheStreetController: UITableViewController, CreatePetWalkOnTheStreetControllerDelegate {
 	
-	var titleName = ""
-	var petWalk = [PetWalk]()
+	func addNewCell(petWalk: PetWalk) {
+		petWalkList.append(petWalk)
+		tableView.reloadData()
+	}
+
+	var petWalkList = [PetWalk]()
 	var petName: PetName?
 	
 	func fetch() {
 		guard let allPetsTime = petName?.petWalk?.allObjects as? [PetWalk] else { return }
-		petWalk = allPetsTime
-		//		let viewContext = CoreDataManager.shared.persistentContainer.viewContext
-		//		let fetchRequest = NSFetchRequest<PetWalk>(entityName: "PetWalk")
-		//		do {
-		//			petWalk = try viewContext.fetch(fetchRequest)
-		//		} catch let error {
-		//			print(error)
-		//		}
+		petWalkList = allPetsTime
 	}
 	
 	override func viewDidLoad() {
@@ -33,19 +30,21 @@ class PetWalkOnTheStreetController: UITableViewController {
 		view.backgroundColor = .darkBlueColor
 		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(hangleAdd))
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+		tableView.tableFooterView = UIView(frame: CGRect.zero)
 		fetch()
 	}
 	
 	@objc func hangleAdd() {
 		let createPetWalkOnTheStreetController = CreatePetWalkOnTheStreetController()
 		createPetWalkOnTheStreetController.pet = petName
+		createPetWalkOnTheStreetController.delegate = self
 		let navBar = CustomNavigationController(rootViewController: createPetWalkOnTheStreetController)
 		present(navBar, animated: true, completion: nil)
 		print("working!")
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return petWalk.count
+		return petWalkList.count
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,10 +52,10 @@ class PetWalkOnTheStreetController: UITableViewController {
 		cell.textLabel?.textColor = .white
 		cell.backgroundColor = .darkBlueColor
 		cell.selectionStyle = UITableViewCellSelectionStyle.none
-		let nameCell = petWalk[indexPath.row]
+		let nameCell = petWalkList[indexPath.row]
 		if let date = nameCell.date {
 			let dateFormatter = DateFormatter()
-			dateFormatter.dateFormat = "MM/dd/yyyy hh:mm"
+			dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
 			cell.textLabel?.text = dateFormatter.string(from: date)
 		}
 		return cell
