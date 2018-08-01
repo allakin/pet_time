@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol CreatePetWalkOnTheStreetControllerDelegate {
+	func addNewCell(petWalk: PetWalk)
+}
+
 class CreatePetWalkOnTheStreetController: UIViewController {
 	
 	var pet : PetName?
+	var delegate: CreatePetWalkOnTheStreetControllerDelegate?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -31,7 +36,9 @@ class CreatePetWalkOnTheStreetController: UIViewController {
 		if let error = tuple.1 {
 			print(error)
 		} else {
-			dismiss(animated: true, completion: nil)
+			dismiss(animated: true) {
+				self.delegate?.addNewCell(petWalk: tuple.0!)
+			}
 		}
 	}
 	
