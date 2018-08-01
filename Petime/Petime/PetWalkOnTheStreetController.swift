@@ -30,6 +30,7 @@ class PetWalkOnTheStreetController: UITableViewController, CreatePetWalkOnTheStr
 		view.backgroundColor = .darkBlueColor
 		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(hangleAdd))
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+		tableView.tableFooterView = UIView(frame: CGRect.zero)
 		fetch()
 	}
 	
@@ -50,7 +51,7 @@ class PetWalkOnTheStreetController: UITableViewController, CreatePetWalkOnTheStr
 		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 		cell.textLabel?.textColor = .white
 		cell.backgroundColor = .darkBlueColor
-//		cell.selectionStyle = UITableViewCellSelectionStyle.none
+		cell.selectionStyle = UITableViewCellSelectionStyle.none
 		let nameCell = petWalkList[indexPath.row]
 		if let date = nameCell.date {
 			let dateFormatter = DateFormatter()
