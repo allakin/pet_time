@@ -57,7 +57,7 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 			label.text = "99"
 			label.textColor = .white
 			cell.accessoryView = label
-			cell.selectionStyle = UITableViewCellSelectionStyle.none
+//			cell.selectionStyle = UITableViewCellSelectionStyle.none
 		}
 		cell.textLabel?.textColor = .white
 		cell.backgroundColor = .darkBlueColor
@@ -73,7 +73,6 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let petWalk = PetWalkOnTheStreetController()
-//		let title = petName[indexPath.row].name
 		petWalk.petName = petName[indexPath.row]
 		navigationController?.pushViewController(petWalk, animated: true)
 	}
