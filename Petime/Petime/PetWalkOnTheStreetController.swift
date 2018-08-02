@@ -28,10 +28,16 @@ class PetWalkOnTheStreetController: UITableViewController, CreatePetWalkOnTheStr
 		super.viewDidLoad()
 		navigationItem.title = petName?.name
 		view.backgroundColor = .darkBlueColor
-		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(hangleAdd))
+		let refreshItem = UIBarButtonItem(title: "Remove All", style: .plain, target: self, action: #selector(hangleRemove))
+		let addItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(hangleAdd))
+		navigationItem.setRightBarButtonItems([addItem, refreshItem], animated: true)
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 		tableView.tableFooterView = UIView(frame: CGRect.zero)
 		fetch()
+	}
+	
+	@objc func hangleRemove() {
+		
 	}
 	
 	@objc func hangleAdd() {
@@ -40,7 +46,6 @@ class PetWalkOnTheStreetController: UITableViewController, CreatePetWalkOnTheStr
 		createPetWalkOnTheStreetController.delegate = self
 		let navBar = CustomNavigationController(rootViewController: createPetWalkOnTheStreetController)
 		present(navBar, animated: true, completion: nil)
-		print("working!")
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

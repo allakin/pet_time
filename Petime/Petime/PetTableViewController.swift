@@ -10,12 +10,12 @@ import UIKit
 import CoreData
 
 class PetTableViewController: UITableViewController, CreatePetControllerDelegate, EditPetNameViewControllerDelegate {
+	
 	func editPetName(name: PetName) {
 		let row = petName.index(of: name)
 		let indexPath = IndexPath(row: row!, section: 0)
 		tableView.reloadRows(at: [indexPath], with: .middle)
 	}
-	
 	
 	func createPetName(name: PetName) {
 		petName.append(name)
