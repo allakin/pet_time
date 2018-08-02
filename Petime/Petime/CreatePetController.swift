@@ -51,6 +51,7 @@ class CreatePetController: UIViewController {
 			print(error)
 		} else {
 			dismiss(animated: true) {
+				print("saved!")
 				self.delegate?.createPetName(name: tuple.0!)
 			}
 		}
