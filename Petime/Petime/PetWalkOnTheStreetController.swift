@@ -46,7 +46,6 @@ class PetWalkOnTheStreetController: UITableViewController, CreatePetWalkOnTheStr
 		createPetWalkOnTheStreetController.delegate = self
 		let navBar = CustomNavigationController(rootViewController: createPetWalkOnTheStreetController)
 		present(navBar, animated: true, completion: nil)
-		print("working!")
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
