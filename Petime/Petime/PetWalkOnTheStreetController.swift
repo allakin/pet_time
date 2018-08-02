@@ -28,17 +28,17 @@ class PetWalkOnTheStreetController: UITableViewController, CreatePetWalkOnTheStr
 		super.viewDidLoad()
 		navigationItem.title = petName?.name
 		view.backgroundColor = .darkBlueColor
-		let refreshItem = UIBarButtonItem(title: "Remove All", style: .plain, target: self, action: #selector(hangleRemove))
-		let addItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(hangleAdd))
-		navigationItem.setRightBarButtonItems([addItem, refreshItem], animated: true)
+//		let refreshItem = UIBarButtonItem(title: "Remove All", style: .plain, target: self, action: #selector(hangleRemove))
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(hangleAdd))
+//		navigationItem.setRightBarButtonItems([addItem, refreshItem], animated: true)
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 		tableView.tableFooterView = UIView(frame: CGRect.zero)
 		fetch()
 	}
 	
-	@objc func hangleRemove() {
-		
-	}
+//	@objc func hangleRemove() {
+//
+//	}
 	
 	@objc func hangleAdd() {
 		let createPetWalkOnTheStreetController = CreatePetWalkOnTheStreetController()
@@ -64,6 +64,29 @@ class PetWalkOnTheStreetController: UITableViewController, CreatePetWalkOnTheStr
 			cell.textLabel?.text = dateFormatter.string(from: date)
 		}
 		return cell
+	}
+	
+	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+		let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+			let petlist = self.petWalkList[indexPath.row]
+			
+			self.petWalkList.remove(at: indexPath.row)
+			self.tableView.deleteRows(at: [indexPath], with: .automatic)
+			
+			// delete the company from Core Data
+			let context = CoreDataManager.shared.persistentContainer.viewContext
+			
+			context.delete(petlist)
+			
+			do {
+				try context.save()
+			} catch let saveErr {
+				print("Failed to delete name:", saveErr)
+			}
+		}
+		deleteAction.backgroundColor = .darkPinkColor
+		
+		return [deleteAction]
 	}
 	
 }

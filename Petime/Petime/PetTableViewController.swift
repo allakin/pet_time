@@ -81,6 +81,7 @@ class PetTableViewController: UITableViewController, CreatePetControllerDelegate
 		navigationController?.pushViewController(petWalk, animated: true)
 	}
 	
+	
 	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 		let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
 			let petlist = self.petName[indexPath.row]
